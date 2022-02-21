@@ -24,11 +24,7 @@ body{
     z-index: -100;
     display: none;
 }
-.boardInfo{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
+
 #scoreBoard{
     display: inline-flex;
 }
@@ -45,7 +41,30 @@ body{
     background-color: #f35a69;
 }
 .nes-container{
-    height: 99vh;
+    height: 98vh;
+}
+.social-media{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.main-sections{
     display: grid;
-    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+.section-one{
+    display: flex;
+    align-items: center;
+}
+.section-three{
+    
+    display: flex;
+}
+.boardInfo{
+    display: flex;
+    align-items: center;
+}
+#start{
+    align-self: flex-end;
 }

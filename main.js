@@ -5,7 +5,7 @@ const startButton = document.getElementById('start');
 const gameOverSign = document.getElementById('gameOver');
 
 // Game settings
-const boardSize = 10;
+const boardSize = 15;
 const gameSpeed = 200;
 const squareTypes = {
     emptySquare: 0,
@@ -60,7 +60,7 @@ const moveSnake = () => {
     if( newSquare < 0 || 
         newSquare > boardSize * boardSize  ||
         (direction === 'ArrowRight' && column == 0) ||
-        (direction === 'ArrowLeft' && column == 9 ||
+        (direction === 'ArrowLeft' && column == boardSize - 1 ||
         boardSquares[row][column] === squareTypes.snakeSquare) ) {
         gameOver();
     } else {
@@ -119,8 +119,8 @@ const updateScore = () => {
 
 const createBoard = () => {
     boardSquares.forEach( (row, rowIndex) => {
-        row.forEach( (column, columnndex) => {
-            const squareValue = `${rowIndex}${columnndex}`;
+        row.forEach( (column, columInndex) => {
+            const squareValue = `${rowIndex}${columInndex}`;
             const squareElement = document.createElement('div');
             squareElement.setAttribute('class', 'square emptySquare');
             squareElement.setAttribute('id', squareValue);
@@ -131,21 +131,22 @@ const createBoard = () => {
 }
 
 const setGame = () => {
-    // snake = ['00', '01', '02', '03'];
     snake = ['00'];
     score = snake.length;
     direction = 'ArrowRight';
-    boardSquares = Array.from(Array(boardSize), () => new Array(boardSize).fill(squareTypes.emptySquare));
+    matrixRow = Array(boardSize);
+    matrixColumn = () => new Array(boardSize).fill(squareTypes.emptySquare);
+    boardSquares = Array.from(matrixRow, matrixColumn);
     console.log(boardSquares);
-    board.innerHTML = '';
+    // board.innerHTML = '';
     emptySquares = [];
-    createBoard();
 }
 
 const startGame = () => {
     setGame();
     gameOverSign.style.display = 'none';
     startButton.disabled = true;
+    createBoard();
     drawSnake();
     updateScore();
     createRandomFood();
@@ -154,3 +155,9 @@ const startGame = () => {
 }
 
 startButton.addEventListener('click', startGame);
+window.addEventListener('keyup', (e)  =>{
+    if(e.keyCode ===13){
+        startGame();
+        console.log('enter');
+    }
+});
