@@ -13,8 +13,11 @@ body{
     font-size: 12px;
 }
 #cell-container{
+    
     width: 340px;
-    margin: 20px auto;
+    height: 97vh;
+    overflow: hidden;
+    margin: 20px auto 0;
     position: relative;
 }
 #phone{

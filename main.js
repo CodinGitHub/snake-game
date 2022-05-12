@@ -1,6 +1,17 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
+//Cambio de fuente
+let myFont = new FontFace(
+  "GamerFont",
+  "url(https://fonts.gstatic.com/s/pressstart2p/v14/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2)"
+);
+
+myFont.load().then((font) => {
+  document.fonts.add(font);
+  console.log("Font loaded");
+});
+
 let lightGreen = '#BCC900';
 let green = '#756D00';
 let darkGreen = '#554f03';
@@ -13,12 +24,10 @@ class SnakePart {
   }
 }
 
-let speed = 7;
+let speed = 140;
 
 let tileCount = 8;
-// let tileSize = canvas.width / tileCount;
 let tileSize = 8;
-console.log(canvas.height)
 
 let headX = 15;
 let headY = 10;
@@ -58,13 +67,12 @@ function drawGame() {
   drawScore();
 
   if (score > 5) {
-    speed = 9;
+    speed = 110;
   }
   if (score > 10) {
-    speed = 11;
+    speed = 80;
   }
-
-  setTimeout(drawGame, 1000 / speed);
+  setTimeout(drawGame, speed);
 }
 
 function isGameOver() {
@@ -95,11 +103,11 @@ function isGameOver() {
 
   if (gameOver) {
     ctx.fillStyle = veryDarkGreen;
-    ctx.font = "35px Verdana";
+    ctx.font = "19px GamerFont";
 
     if (gameOver) {
       ctx.fillStyle = "white";
-      ctx.font = "30px Verdana";
+      ctx.font = "19px GamerFont";
       ctx.fillStyle = veryDarkGreen;
 
       ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2);
@@ -114,19 +122,19 @@ function isGameOver() {
 function drawBorders(){
     ctx.fillStyle = green;
     ctx.beginPath();
-    ctx.moveTo(30,25);
-    ctx.lineTo(230,25);
-    ctx.lineTo(230,145);
-    ctx.lineTo(30,145);
-    ctx.lineTo(30,25);
+    ctx.moveTo(32,24);
+    ctx.lineTo(232,24);
+    ctx.lineTo(232,144);
+    ctx.lineTo(32,144);
+    ctx.lineTo(32,24);
     ctx.stroke();
     ctx.closePath();
 }
 
 function drawScore() {
   ctx.fillStyle = green;
-  ctx.font = "13px Verdana";
-  ctx.fillText("Score " + score, canvas.width - 80, 18);
+  ctx.font = "10px GamerFont";
+  ctx.fillText("Score " + score, canvas.width - 100, 18);
 }
 
 function clearScreen() {
@@ -183,7 +191,6 @@ document.body.addEventListener("keydown", keyDown);
 function keyDown(event) {
   //Enter
   if (event.keyCode == 13){
-    console.log('presionaste ENTER')
     location.reload();
   }
   //up
