@@ -9,8 +9,21 @@
     <title>Snake Game</title>
 </head>
 <body>
-
-   <script src="./main.js"></script>
-   <!-- <script src="./pruebas.js"></script> -->
+    <section id="controls">
+        <figure>
+            <img id="arrow-keys" src="./images/arrows.png" alt="">
+            <figcaption class="keys-caption">Movimientos</figcaption>
+        </figure>
+        <figure>
+            <img id="enter" src="./images/enter.png" alt="">
+            <figcaption class="enter-caption">Reiniciar</figcaption>
+        </figure>
+    </section>
+    
+    <div id="cell-container">
+        <img id="phone" src="./images/phone.png" alt="">
+        <canvas id="game" width="260" height="170"></canvas>
+    </div>
+    <script src="./main.js"></script>
 </body>
 </html>
